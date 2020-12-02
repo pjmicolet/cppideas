@@ -18,7 +18,7 @@ public:
 
 	auto operator=( const int rval ) -> Integer&
 	{
-		value = rval;
+		value = static_cast< stored_type>(rval & bitmask);
 		return *this;
 	}
 	
