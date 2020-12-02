@@ -29,7 +29,7 @@ public:
 		return *this;
 	}
 
-	friend std::ostream& operator<<( std::ostream& os, const Integer& integer )
+	friend auto operator<<( std::ostream& os, const Integer& integer ) -> std::ostream&
 	{
 		if( integer.size <= 8 ) // this is stupid but it wont print if it's int8_t
 			os << static_cast< int16_t >( integer.value );
