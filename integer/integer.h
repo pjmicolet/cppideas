@@ -16,9 +16,30 @@ public:
 			bitmask = ( one << n ) - 1;
 	}
 
+	Integer( int val ) {
+		size = n;
+		stored_type zero = 0;
+		zero = ~zero;
+		value = val & bitmask;
+	}
+
 	auto operator=( const int rval ) -> Integer&
 	{
-		value = static_cast< stored_type>(rval & bitmask);
+		value = static_cast< stored_type >(rval & bitmask);
+		return *this;
+	}
+
+	template< uint8_t otherSize >
+	auto operator+( const Integer< otherSize >& rval ) -> Integer<n>&
+	{
+		value += ( rval.getVal() & bitmask );
+		return *this;
+	}
+
+	template< uint8_t otherSize >
+	auto operator-( const Integer< otherSize >& rval ) -> Integer<n>&
+	{
+		value -= ( rval.getVal() & bitmask );
 		return *this;
 	}
 	
