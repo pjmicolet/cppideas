@@ -27,17 +27,19 @@ public:
 	}
 
 	template< uint8_t otherSize >
-	auto operator+( const Integer< otherSize >& rval ) -> Integer<n>&
+	auto operator+( const Integer< otherSize >& rval ) -> Integer<n>
 	{
-		value += ( rval.getVal() & bitmask );
-		return *this;
+		Integer<n> res;
+		res.value = ( rval.getVal() & bitmask ) + value;
+		return res;
 	}
 
 	template< uint8_t otherSize >
-	auto operator-( const Integer< otherSize >& rval ) -> Integer<n>&
+	auto operator-( const Integer< otherSize >& rval ) -> Integer<n>
 	{
-		value -= ( rval.getVal() & bitmask );
-		return *this;
+		Integer<n> res;
+		res.value = ( rval.getVal() & bitmask ) + value;
+		return res;
 	}
 	
 	template< uint8_t otherSize >
