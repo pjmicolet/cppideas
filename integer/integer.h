@@ -9,17 +9,14 @@ public:
 	Integer() {
 		value = 0;
 		size = n;
-		stored_type one = 1;
-		if( n == 8 || n == 16 || n == 32 || n == 64 )
-			bitmask = one << n - 1;
-		else
-			bitmask = ( one << n ) - 1;
+		stored_type zero = 0;
+		bitmask = ~zero;
 	}
 
 	Integer( int val ) {
 		size = n;
 		stored_type zero = 0;
-		zero = ~zero;
+		bitmask = ~zero;
 		value = val & bitmask;
 	}
 
