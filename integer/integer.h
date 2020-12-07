@@ -49,6 +49,32 @@ public:
 		return *this;
 	}
 
+	auto operator++( int val ) -> Integer<n>
+	{
+		Integer<n> res;
+		res.value = value++;
+		return res;
+	}
+
+	auto operator--( int val ) -> Integer<n>
+	{
+		Integer<n> res;
+		res.value = value--;
+		return res;
+	}
+
+	auto operator++( ) -> Integer<n>&
+	{
+		++value;
+		return *this;
+	}
+
+	auto operator--( ) -> Integer<n>&
+	{
+		--value;
+		return *this;
+	}
+
 	friend auto operator<<( std::ostream& os, const Integer& integer ) -> std::ostream&
 	{
 		if( integer.size <= 8 ) // this is stupid but it wont print if it's int8_t
@@ -57,7 +83,7 @@ public:
 			os << integer.value;
 		return os;
 	}
-	
+
 	auto getVal() const
 	{
 		return value;
@@ -67,7 +93,7 @@ private:
 	using stored_type = std::conditional_t< n <= 8, int8_t,
 						std::conditional_t< n <= 16, int16_t,
 						std::conditional_t< n <= 32, int32_t,
-						std::conditional_t< n <= 64, int64_t, int64_t > > > >;
+						std::conditional_t< n <= 64, int64_t, void > > > >;
 	stored_type value;
 	stored_type bitmask;
 	uint8_t size;
